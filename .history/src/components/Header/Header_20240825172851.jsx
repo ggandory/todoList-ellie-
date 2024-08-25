@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Header.module.css";
 
 export default function Header({ filters, filter, onFilterChange }) {
   return (
@@ -8,9 +7,7 @@ export default function Header({ filters, filter, onFilterChange }) {
         {filters.map((value, index) => (
           <li key={index}>
             <button
-              className={`${styles.filter} ${
-                filter === value && styles.selected
-              } `}
+              className={styles.filter}
               onClick={() => onFilterChange(value)}
             >
               {value}
