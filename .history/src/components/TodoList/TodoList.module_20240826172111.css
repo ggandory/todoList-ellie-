@@ -9,4 +9,9 @@
 .list {
   flex: 1 1 auto;
   overflow-y: auto;
+  margin-bottom: 50px; /* AddTodo 버튼이 안보이지 않도록 간격 추가 */
+}
+
+.header {
+  flex-shrink: 0; /* 헤더가 스크롤되지 않도록 고정 */
 }
