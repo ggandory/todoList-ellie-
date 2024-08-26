@@ -8,14 +8,15 @@ export function DarkModeProvider({ children }) {
     setDarkMode(!darkMode);
     updateDarkMode(!darkMode); //근데 여기서 안에 (prev) => !prev에서 변경된거임
   };
-  useEffect(() => {
+  useEffect(()=>{
     const isDark =
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDarkMode(isDark);
-    updateDarkMode(isDark);
-  }, []);
+    
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
   return (
     <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
       {children}
@@ -26,10 +27,8 @@ export function DarkModeProvider({ children }) {
 function updateDarkMode(darkMode) {
   if (darkMode) {
     document.documentElement.classList.add("dark");
-    localStorage.theme = "dark";
   } else {
     document.documentElement.classList.remove("dark");
-    localStorage.theme = "light";
   }
 }
 export const useDarkMode = () => useContext(DarkModeContext);

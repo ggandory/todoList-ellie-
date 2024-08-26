@@ -4,7 +4,7 @@ import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
 
 export default function TodoList({ filter }) {
-  const [todos, setTodos] = useState(() => readTodoFromLocalStorage()); //그러나 이 안에는 readTodosFromLocalStrorage로만 표현됨
+  const [todos, setTodos] = useState(readTodoFromLocalStorage());
   const handleAdd = (todo) => setTodos([...todos, todo]);
   const handleUpdate = (updated) =>
     setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
